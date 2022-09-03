@@ -11,6 +11,8 @@ class Post extends Model
 
     protected $guarded = [];
 
+    protected $with = ['category', 'author']; //default for every post query you perform
+
     public function category()
     {
       return $this->belongsTo(Category::class);
