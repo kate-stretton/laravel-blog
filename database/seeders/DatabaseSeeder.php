@@ -14,11 +14,49 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $user = \App\Models\User::factory()->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $personal = \App\Models\Category::create([
+          'name' => 'Personal',
+          'slug' => 'personal'
+        ]);
+
+        $family = \App\Models\Category::create([
+          'name' => 'Family',
+          'slug' => 'family'
+        ]);
+
+        $work = \App\Models\Category::create([
+          'name' => 'Work',
+          'slug' => 'work'
+        ]);
+
+        \App\Models\Post::create([
+          'user_id' => $user->id,
+          'category_id' => $family->id,
+          'title' => 'My Family Post',
+          'slug' => 'my-family-post',
+          'excerpt' => 'Gumbo beet greens corn soko endive gumbo gourd.',
+          'body' => '<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>'
+        ]);
+
+        \App\Models\Post::create([
+          'user_id' => $user->id,
+          'category_id' => $personal->id,
+          'title' => 'My Personal Post',
+          'slug' => 'my-personal-post',
+          'excerpt' => 'Gumbo beet greens corn soko endive gumbo gourd.',
+          'body' => '<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>'
+        ]);
+
+        \App\Models\Post::create([
+          'user_id' => $user->id,
+          'category_id' => $work->id,
+          'title' => 'My Work Post',
+          'slug' => 'my-work-post',
+          'excerpt' => 'Gumbo beet greens corn soko endive gumbo gourd.',
+          'body' => '<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>'
+        ]);
+
     }
 }
